@@ -1,0 +1,14 @@
+outline:
+declare 3 variables to hold location of each ship
+-var location 1;
+-var location 2;
+-var location 3;
+declare a var that holds the users current guess
+-var guess;
+declare a var to hold # of hits
+-var hits=0;
+declare a var to hold # of guesses
+-var guesses=0;
+declare a var to keep track of #ofships sunk
+-var isSunk = false;
+

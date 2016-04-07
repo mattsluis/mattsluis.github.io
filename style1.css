@@ -1,20 +1,25 @@
 
 body {
- /* background-color: rgb(241,225,217);*/
+  margin: 0 auto;
+  background-color: rgb(241,225,217);
 }
-
-
 td {
-  height: 75px;
-  width: 75px;
+
+  height: 70px;
+  width: 70px;
 }
 
-/*.hit {
+.hit {
   background-color: red;
+  opacity: .5;
 }
 .miss {
   background-color: gray;
-}*/
+  opacity: .5;
+}
 .open {
   background-color: transparent;
+  cursor: pointer;
 }
+/*  border-color: black;
+  border-radius: 3px;*/
