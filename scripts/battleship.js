@@ -24,24 +24,29 @@ var grid = createClickGrid(rows, cols, function(el, row, col) {
 
 
   if(el.className === 'miss' || el.className === 'hit') { //if className is miss or hit, alert select diff sq
-  alert('select another sq');
-  return;
+    swal({
+      title: "select another square",
+      text: ("what do you even got going on over there"),
+      imageUrl: 'img/thumbsDown.png'
+    });;
+   return;
   } 
   if(gameBoard[row][col] === 0) { //if it is true, that the selected coordinate is equal to 0, alert("miss")
   el.className = 'miss'
-  alert("Miss!");
-  } 
-  else {
+  $.playSound('fx/laugh');
+  $('#message').html('MISS!')
+  message.style.color = "blue"
+  counter++;
+  } else {
     el.className = 'hit' // else alert("hit")
+    counter++;
     hitCounter++;
     checkWin();
     if (hitCounter<16) {
-      alert('hit');
+    $('#message').html('HIT!');
+    message.style.color = "red"
     }
-
-    
-  }
-    
+  } 
 });
 
 // var shipPositions = {
@@ -64,7 +69,7 @@ $("#gameboard").append(grid); //adds table to div id gameboard
 function createClickGrid(rows, cols, callback){
 
   var grid = document.createElement('table');  //creates table and sets var equal to.
-  grid.style.background = "url('escape.jpeg') no-repeat";  //adds BG
+  grid.style.background = "url('img/escape.jpeg') no-repeat";  //adds BG
   
   for (var r = 0; r < rows; r++){ // adds the "tr" or row element to table
     var tr = grid.appendChild(document.createElement('tr')); //sets tr element as var
@@ -74,6 +79,7 @@ function createClickGrid(rows, cols, callback){
         cell.addEventListener('click',(function(el, r, c) { // makes each cell clickable
         cell.style.border = "5px solid #000"; //adds bordeer
         cell.className = 'open'; //adds class to each cell. I am calling it open which also identifes it as a cell that has not been guess yet
+          
           return function(){
             callback(el, r, c);
           }
@@ -100,9 +106,13 @@ var gameBoard = [
 
 function checkWin() {
   if (hitCounter===16) {
-    alert('you have won!')
+  $.playSound('fx/tooTired');
+  swal({
+    title: "cool.",
+    text: ("it took you " + counter + " moves to save the president"),
+    imageUrl: 'img/thumbsDown.png'
+    });
     // gameOver=true;
-
   }
 }
 

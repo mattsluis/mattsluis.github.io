@@ -14,12 +14,19 @@ td {
   opacity: .8;
 }
 .miss {
-  background-color: gray;
-  opacity: .8;
+  background-color: blue;
+  opacity: .7;
 }
 .open {
   background-color: transparent;
   cursor: pointer;
 }
+#message {
+  font-size: 68px;
+
+  text-align: center;
+
+}
+
 /*  border-color: black;
   border-radius: 3px;*/
