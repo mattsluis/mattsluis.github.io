@@ -3,17 +3,6 @@ var rows = 10;
 var cols = 10;
 var counter = 0; //sets counter to 0. for each click, i++
 var hitCounter = 0; // counts amount of hits. when hitCounter hits X game over.
-// var gameOver = false;
-
- 
-
-  //Goals for thursday 4/7/16:
-  //1. dont allow a square to be clicked twice...
-  //done
-  //2. checkwin
-  //DONE~!
-  //3. count moves
-  //DONE @ 13:12!
 
   
 var grid = createClickGrid(rows, cols, function(el, row, col) {
@@ -24,6 +13,7 @@ var grid = createClickGrid(rows, cols, function(el, row, col) {
 
 
   if(el.className === 'miss' || el.className === 'hit') { //if className is miss or hit, alert select diff sq
+    $.playSound('fx/laugh');
     swal({
       title: "select another square",
       text: ("what do you even got going on over there"),
@@ -33,10 +23,10 @@ var grid = createClickGrid(rows, cols, function(el, row, col) {
   } 
   if(gameBoard[row][col] === 0) { //if it is true, that the selected coordinate is equal to 0, alert("miss")
   el.className = 'miss'
-  $.playSound('fx/laugh');
+  counter++;
   $('#message').html('MISS!')
   message.style.color = "blue"
-  counter++;
+  $('#message1').html(counter)
   } else {
     el.className = 'hit' // else alert("hit")
     counter++;
@@ -45,24 +35,13 @@ var grid = createClickGrid(rows, cols, function(el, row, col) {
     if (hitCounter<16) {
     $('#message').html('HIT!');
     message.style.color = "red"
+    $('#message1').html(counter)
     }
   } 
 });
 
-// var shipPositions = {
-//   ship1: {
-//     coordinates: [
-//       {
-//         row: 1,
-//         col: 3
-//       },
-//       {
-//         row: 1,
-//         col: 4
-//       }
-//     ]
-//   }
-// }
+$('#message1').html(counter); //shows # of moves
+
 
 $("#gameboard").append(grid); //adds table to div id gameboard
 
@@ -103,7 +82,7 @@ var gameBoard = [
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]  // hit at 0
 ]
 
-
+//functions checks for winner by checking the number of hits. When hitCounter = 16, the game is won.
 function checkWin() {
   if (hitCounter===16) {
   $.playSound('fx/tooTired');
@@ -112,20 +91,5 @@ function checkWin() {
     text: ("it took you " + counter + " moves to save the president"),
     imageUrl: 'img/thumbsDown.png'
     });
-    // gameOver=true;
   }
 }
-
-
-// var reseT = function(){
-//   for (var i=0;i<9; i++){
-//     board[i].innerHTML = "";
-//   }
-// }
-// var button = document.getElementById("clear");
-//   button.addEventListener("click", reseT);
-
-// var gameBoard1 = [
-//   ["","",]
-// ]
-
