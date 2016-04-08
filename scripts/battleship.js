@@ -4,7 +4,21 @@ var cols = 10;
 var counter = 0; //sets counter to 0. for each click, i++
 var hitCounter = 0; // counts amount of hits. when hitCounter hits X game over.
 
+var gameBoard = [
+// 0  1  2  3  4  5  6  7  8  9//
+  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0], // hits at 3,4,5,6
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // none
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // none
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], // hit at 6
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], // hit at 6
+  [0, 0, 0, 0, 0, 0, 1, 1, 1, 1], // hit at 6,7,8,9
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], // hit at 0
+  [1, 0, 0, 1, 0, 0, 0, 0, 0, 0], // hit at 0,3
+  [1, 0, 0, 1, 0, 0 ,0, 0, 0, 0], // hit at 0,3
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]  // hit at 0
+]
   
+
 var grid = createClickGrid(rows, cols, function(el, row, col) {
   console.log("element:", el);
   console.log("row:", row);
@@ -68,19 +82,6 @@ function createClickGrid(rows, cols, callback){
   return grid;
 }
 
-var gameBoard = [
-// 0  1  2  3  4  5  6  7  8  9//
-  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0], // hits at 3,4,5,6
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // none
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // none
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], // hit at 6
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], // hit at 6
-  [0, 0, 0, 0, 0, 0, 1, 1, 1, 1], // hit at 6,7,8,9
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], // hit at 0
-  [1, 0, 0, 1, 0, 0, 0, 0, 0, 0], // hit at 0,3
-  [1, 0, 0, 1, 0, 0 ,0, 0, 0, 0], // hit at 0,3
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]  // hit at 0
-]
 
 //functions checks for winner by checking the number of hits. When hitCounter = 16, the game is won.
 function checkWin() {
